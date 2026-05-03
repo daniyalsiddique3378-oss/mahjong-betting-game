@@ -57,3 +57,149 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# 🀄 Mahjong Hand Betting Game
+
+A web-based betting game built with Angular 21
+using Mahjong tiles. Bet Higher or Lower on
+hand totals to score points!
+
+
+
+## 🎮 How to Play
+
+1. A hand of 3 Mahjong tiles is dealt
+2. See the total value of your hand
+3. Bet if the NEXT hand will be HIGHER or LOWER
+4. Win = +100 points
+5. Game ends when:
+   - A Dragon/Wind tile reaches value 0 or 10
+   - Draw pile runs out 3 times
+
+
+## 🚀 Setup Instructions
+
+### Prerequisites
+- Node.js v24.15.0
+- npm v11.12.1
+- Angular CLI v21
+
+### Installation
+
+# Clone the repository
+git clone https://github.com/daniyalsiddique3378-oss/mahjong-betting-game.git
+
+# Go into project folder
+cd mahjong-betting-game
+
+# Install dependencies
+npm install
+
+# Run the app
+ng serve
+
+# Open browser
+# Go to: http://localhost:4200
+
+---
+
+## 📁 Project Structure
+
+src/
+├── app/
+│   ├── core/
+│   │   ├── models/
+│   │   │   └── tile.model.ts       # Data interfaces
+│   │   └── services/
+│   │       ├── game.service.ts     # Game logic
+│   │       ├── deck.service.ts     # Tile management
+│   │       └── leaderboard.service.ts # Scores
+│   ├── features/
+│   │   ├── landing/                # Home page
+│   │   ├── game/                   # Game page
+│   │   │   └── components/
+│   │   │       ├── tile/           # Single tile
+│   │   │       ├── hand/           # 3 tiles
+│   │   │       ├── history/        # Past hands
+│   │   │       └── deck-info/      # Pile counts
+│   │   └── game-over/              # Results page
+│   └── app.routes.ts               # Routing
+
+Kindly ignore the Sub coomponent feature i forgot to delete
+
+## 🛠️ Tech Stack
+
+
+| Angular 21 | Main framework |
+| TypeScript | Logic & models |
+| CSS | Styling |
+| Angular Signals | State management | Angular Computed
+| Angular Router | Page navigation |
+| LocalStorage | Leaderboard data |
+
+
+
+## ✨ Features
+
+- ✅ Landing page with leaderboard
+- ✅ 34 Mahjong tiles (Numbers, Dragons, Winds)
+- ✅ Dynamic tile value scaling
+- ✅ Bet Higher or Lower mechanic
+- ✅ Draw pile & discard pile tracking
+- ✅ Automatic reshuffling (max 3 times)
+- ✅ Hand history display
+- ✅ Score tracking (+100 per win)
+- ✅ Game over detection
+- ✅ Score saving to leaderboard
+- ✅ Smooth CSS animations
+- ✅ Responsive design
+
+
+
+## 🤖 AI vs Handwritten
+
+### Handwritten by Me:
+- Project architecture decisions
+- Component structure planning
+- Game logic understanding between Real game and this project
+- Debugging and fixing errors
+- CSS customization and tweaks
+- Testing all game scenarios
+- README documentation
+
+### AI Assisted (Claude):
+- code structure like first make model --> services --> componenet --> HTML --> CSS 
+- CSS animation patterns
+- Method like createDeck()
+- Initial service method templates
+- HTML template structure
+
+> Note: some AI-generated code was reviewed,
+> understood, and modified by me before use.
+> I understand every line of code in this project.
+
+---
+
+## 🎯 Game Rules
+
+### Tile Values
+| Tile Type | Value |
+| Number tiles (1-9) | Face value |
+| Dragon tiles | Starts at 5 |
+| Wind tiles | Starts at 5 |
+
+### Dynamic Scaling
+- Win with Dragon/Wind → value +1
+- Lose with Dragon/Wind → value -1
+
+### Game Over Conditions
+1. Any tile reaches value 0 (too weak)
+2. Any tile reaches value 10 (too powerful)  
+3. Draw pile reshuffled 3 times
+
+---
+
+## 👤 Author
+
+**Daniyal Siddique**
+Assessment for Penny Software W.L.L.
