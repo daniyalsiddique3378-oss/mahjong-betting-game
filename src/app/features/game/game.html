@@ -1,0 +1,184 @@
+<!-- game.component.html -->
+<div class="game-page">
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <button class="btn-exit" (click)="onExit()">
+      ← EXIT
+    </button>
+
+    <div class="score-display">
+      <small class="score-label">SCORE</small>
+      <strong class="score-value">
+        {{ gameService.score() }}
+      </strong>
+    </div>
+
+    <!-- Reshuffle dots (3 dots) -->
+    <div class="dots">
+      <span [class.used]="gameService.reshuffleCount() >= 1">●</span>
+      <span [class.used]="gameService.reshuffleCount() >= 2">●</span>
+      <span [class.used]="gameService.reshuffleCount() >= 3">●</span>
+    </div>
+  </nav>
+
+  <!-- ── GAME BODY ── -->
+  <div class="game-body">
+
+    <!-- Deck Info -->
+    <div class="deck-row">
+      <div class="deck-box">
+        <small>DRAW PILE</small>
+        <strong [class.low]="gameService.isDrawPileLow()">
+          {{ gameService.drawPile().length }}
+        </strong>
+      </div>
+      <div class="deck-box">
+        <small>DISCARD</small>
+        <strong>
+          {{ gameService.discardPile().length }}
+        </strong>
+      </div>
+    </div>
+
+    <!-- Result Banner -->
+    <div
+      *ngIf="gameService.betResult()"
+      class="result-banner"
+      [class.win]="gameService.betResult() === 'win'"
+      [class.lose]="gameService.betResult() === 'lose'">
+      {{ gameService.betResult() === 'win'
+         ? '✅ WIN! +100 pts'
+         : '❌ LOSE!' }}
+    </div>
+
+    <!-- Current Hand -->
+    <div class="hand-card">
+      <h3>CURRENT HAND</h3>
+
+      <div class="tiles-row">
+        <div
+          *ngFor="let tile of gameService.currentHand()"
+          class="tile"
+          [class.number]="tile.type === 'number'"
+          [class.dragon]="tile.type === 'dragon'"
+          [class.wind]="tile.type === 'wind'">
+          <span class="symbol">{{ tile.symbol }}</span>
+          <span class="tname">{{ tile.name }}</span>
+          <span class="tval">{{ tile.value }}</span>
+        </div>
+      </div>
+
+      <div class="total">
+        <small>TOTAL VALUE</small>
+        <strong>{{ gameService.handTotal() }}</strong>
+      </div>
+    </div>
+
+    <!-- Bet Buttons -->
+    <p class="hint">Will the next hand be...</p>
+    <div class="bet-row">
+      <button
+        class="btn-higher"
+        [disabled]="gameService.betLocked()"
+        (click)="onBetHigher()">
+        ▲ HIGHER
+      </button>
+      <button
+        class="btn-lower"
+        [disabled]="gameService.betLocked()"
+        (click)="onBetLower()">
+        ▼ LOWER
+      </button>
+    </div>
+
+    <!-- History -->
+    <div class="history">
+      <h3>HISTORY</h3>
+
+      <p class="no-history"
+        *ngIf="gameService.history().length === 0">
+        No history yet
+      </p>
+
+      <div class="history-list">
+        <div
+          *ngFor="let hand of gameService.history()"
+          class="history-item">
+
+          <span
+            class="badge"
+            [class.win]="hand.result === 'Win'"
+            [class.lose]="hand.result === 'Lose'">
+            {{ hand.result?.toUpperCase() }}
+          </span>
+
+          <div class="mini-tiles">
+            <span
+              *ngFor="let t of hand.tiles"
+              class="mini-tile">
+              {{ t.symbol }}
+            </span>
+          </div>
+
+          <strong class="history-total">
+            {{ hand.total }}
+          </strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── GAME OVER OVERLAY ── -->
+  <!-- Shows ON TOP of game when game ends -->
+  <div
+    *ngIf="gameService.isGameOver()"
+    class="overlay">
+
+    <div class="overlay-box">
+
+      <!-- Icon -->
+      <div class="overlay-icon">💀</div>
+
+      <!-- Title -->
+      <h2 class="overlay-title">GAME OVER</h2>
+
+      <!-- Reason why game ended -->
+      <p class="overlay-reason">
+        {{ gameService.gameOverReason() }}
+      </p>
+
+      <!-- Final Score -->
+      <div class="overlay-score">
+        <small>FINAL SCORE</small>
+        <strong>{{ gameService.score() }}</strong>
+      </div>
+
+      <!-- Stats -->
+      <div class="overlay-stats">
+        <div>
+          <strong>{{ gameService.handsPlayed() }}</strong>
+          <small>Hands</small>
+        </div>
+        <div>
+          <strong>{{ gameService.wins() }}</strong>
+          <small>Wins</small>
+        </div>
+        <div>
+          <strong>{{ gameService.losses() }}</strong>
+          <small>Losses</small>
+        </div>
+      </div>
+
+      <!-- Button to go to full game over page -->
+      <button
+        class="btn-results"
+        (click)="onGoToResults()">
+        SEE FULL RESULTS →
+      </button>
+
+    </div>
+  </div>
+
+</div>

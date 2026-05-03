@@ -1,0 +1,46 @@
+<div class="gameover">
+
+  <div class="icon">💀</div>
+  <h1>GAME OVER</h1>
+  <p>{{ gameService.gameOverReason() }}</p>
+
+  <!-- Score Card -->
+  <div class="score-card">
+    <small>FINAL SCORE</small>
+    <h2>{{ gameService.score() }}</h2>
+    <div class="stats">
+      <div>
+        <strong>{{ gameService.handsPlayed() }}</strong>
+        <small>Hands</small>
+      </div>
+      <div>
+        <strong>{{ gameService.wins() }}</strong>
+        <small>Wins</small>
+      </div>
+      <div>
+        <strong>{{ gameService.losses() }}</strong>
+        <small>Losses</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Score -->
+  <div class="save-area" *ngIf="!scoreSaved">
+    <input
+      [(ngModel)]="playerName"
+      placeholder="Enter your name"
+      maxlength="20">
+    <button (click)="saveScore()">
+      💾 SAVE SCORE
+    </button>
+  </div>
+
+  <p *ngIf="scoreSaved" class="saved-msg">
+    ✅ Score Saved!
+  </p>
+
+  <!-- Actions -->
+  <button (click)="playAgain()">🎮 PLAY AGAIN</button>
+  <button (click)="goHome()">🏠 HOME</button>
+
+</div>

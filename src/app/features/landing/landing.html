@@ -1,0 +1,44 @@
+<!-- landing.component.html -->
+<div class="landing">
+
+  <!-- Floating tiles -->
+  <div class="logo-tiles">
+    <span>🀙</span>
+    <span>🀇</span>
+    <span>🀙</span>
+    <span>🀀</span>
+  </div>
+
+  <!-- Title -->
+  <h1 class="title">MAHJONG<br>BETTING</h1>
+  <p class="subtitle">Higher or Lower — Hand by Hand</p>
+
+  <!-- Start Button -->
+  <button class="btn-start" (click)="startGame()">
+    ▶ START NEW GAME
+  </button>
+
+  <div class="divider"></div>
+
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <h2>🏆 LEADERBOARD</h2>
+
+    <p class="no-scores"
+       *ngIf="lbService.entries().length === 0">
+      No scores yet — be the first!
+    </p>
+
+    <div class="lb-row"
+         *ngFor="let entry of lbService.entries();
+                 let i = index">
+      <div class="rank">{{ i + 1 }}</div>
+      <div class="lb-name">{{ entry.name }}</div>
+      <div>
+        <div class="lb-score">{{ entry.score }} pts</div>
+        <div class="lb-date">{{ entry.date }}</div>
+      </div>
+    </div>
+
+  </div>
+</div>
