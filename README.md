@@ -106,26 +106,36 @@ ng serve
 ## 📁 Project Structure
 
 src/
-├── app/
-│   ├── core/
-│   │   ├── models/
-│   │   │   └── tile.model.ts       # Data interfaces
-│   │   └── services/
-│   │       ├── game.service.ts     # Game logic
-│   │       ├── deck.service.ts     # Tile management
-│   │       └── leaderboard.service.ts # Scores
-│   ├── features/
-│   │   ├── landing/                # Home page
-│   │   ├── game/                   # Game page
-│   │   │   └── components/
-│   │   │       ├── tile/           # Single tile
-│   │   │       ├── hand/           # 3 tiles
-│   │   │       ├── history/        # Past hands
-│   │   │       └── deck-info/      # Pile counts
-│   │   └── game-over/              # Results page
-│   └── app.routes.ts               # Routing
+└── app/
+    ├── core/
+    │   ├── models/
+    │   │   └── tile.model.ts                 # Data interfaces
+    │   └── services/
+    │       ├── game.service.ts               # Game logic
+    │       ├── deck.service.ts               # Tile management
+    │       └── leaderboard.service.ts        # Score management
+    │
+    ├── features/
+    │   ├── landing/
+    │   │   ├── landing.component.ts
+    │   │   ├── landing.component.html
+    │   │   └── landing.component.css
+    │   │
+    │   ├── game/
+    │   │   ├── game.component.ts
+    │   │   ├── game.component.html
+    │   │   └── game.component.css
+    │   │
+    │   └── game-over/
+    │       ├── game-over.component.ts
+    │       ├── game-over.component.html
+    │       └── game-over.component.css
+    │
+    ├── app.component.ts
+    ├── app.component.html
+    ├── app.component.css
+    └── app.routes.ts                         # Application routing
 
-Kindly ignore the Sub coomponent feature i forgot to delete
 
 ## 🛠️ Tech Stack
 
